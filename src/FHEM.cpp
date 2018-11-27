@@ -1,4 +1,4 @@
-// This allows you to communicate with a FHEM Server.
+// This allows you to communicate with a FHEM Server. 
 // (c) Copyright 2018 Philipp Pfeiffer
 // 
 
