@@ -8,3 +8,5 @@ This is a simple library to communicate with a FHEM Server. It allows to send an
 Any other security (SSL/custom certificates) are not supported. I do not have this set up and as such I do not know if it works or not.
 ## How to use
 coming
+##License
+(c) Copyright 2018 Philipp Pfeiffer
