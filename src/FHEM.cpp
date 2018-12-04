@@ -21,7 +21,7 @@ FHEM::FHEM(String Server)
 
 String FHEM::LoadFromServer(String command)
 {
-	if (!CSRFTokenloaded)
+	if (!CSRFTokenLoaded)
 	{
 		LoadCSRFToken();
 	}
@@ -31,10 +31,19 @@ String FHEM::LoadFromServer(String command)
 	int httpCode = client.GET();
 
 	String result = "";
-
-	if (httpCode > 0) //Check the returning code
+	
+	if (httpCode > 0 && httpCode < 400) //Check the returning code, 200 is ok
 	{
 		result = client.getString(); //Get the request response payload
+	}
+	else if (httpCode == 400)
+	{
+		//CSRF Token was not provided or otherwise false, reload CSRF Token next time:
+		CSRFTokenLoaded = false;
+	}
+	else if (httpCode == 401)
+	{
+		//authentication was either missing or wrong
 	}
 
 	client.end();   //Close connection
@@ -83,5 +92,5 @@ void FHEM::LoadCSRFToken()
 	}
 	client.end();
 
-	CSRFTokenloaded = true;
+	CSRFTokenLoaded = true;
 }

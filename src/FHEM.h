@@ -17,7 +17,7 @@ private:
 	void PrepareClient(String URL, String command);
 	void LoadCSRFToken();
 	HTTPClient client;
-	bool CSRFTokenloaded = false;
+	bool CSRFTokenLoaded = false;
 	String CSRFToken = "";
 	String FHEM_Server = "";
 	String FHEM_User = "";
