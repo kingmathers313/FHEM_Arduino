@@ -10,8 +10,14 @@
 FHEM::FHEM(String Server, String User, String Password)
 {
 	FHEM_Server = Server;
-	FHEM_User = User;
-	FHEM_Password = Password;
+	String auth = User + ":" + Password;
+	FHEM_Authentication = base64::encode(auth);
+}
+
+FHEM::FHEM(String Server, String Authentication)
+{
+	FHEM_Server = Server;
+	FHEM_Authentication = Authentication;
 }
 
 FHEM::FHEM(String Server)
@@ -64,11 +70,9 @@ void FHEM::PrepareClient(String URL, String command)
 
 void FHEM::PrepareClient(String URL)
 {
-	if (FHEM_User != "")
+	if (FHEM_Authentication != "")
 	{
-		String auth = FHEM_User + ":" + FHEM_Password;
-		auth = base64::encode(auth);
-		client.setAuthorization(auth.c_str());
+		client.setAuthorization(FHEM_Authentication.c_str());
 	}
 
 	client.begin(URL);

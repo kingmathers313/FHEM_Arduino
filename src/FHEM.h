@@ -20,8 +20,7 @@ private:
 	bool CSRFTokenLoaded = false;
 	String CSRFToken = "";
 	String FHEM_Server = "";
-	String FHEM_User = "";
-	String FHEM_Password = "";
+	String FHEM_Authentication = "";
 };
 
 #endif
