@@ -4,7 +4,12 @@
 #define FHEM_h
 
 #include "Arduino.h"
-#include <ESPHTTPClient.h>
+
+#if defined(ESP8266)
+#include <ESP8266HTTPClient.h>
+#else
+#include <HTTPClient.h>
+#endif
 
 class FHEM
 {

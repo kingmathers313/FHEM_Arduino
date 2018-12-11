@@ -5,7 +5,12 @@
 #include "Arduino.h"
 #include "FHEM.h"
 #include <base64.h>
-#include <ESPHTTPClient.h>
+
+#if defined(ESP8266)
+#include <ESP8266HTTPClient.h>
+#else
+#include <HTTPClient.h>
+#endif
 
 FHEM::FHEM(String Server, String User, String Password)
 {
